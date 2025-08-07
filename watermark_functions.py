@@ -1,8 +1,12 @@
 from PIL import Image, ImageDraw, ImageFont
 
-# arial = ImageFont.truetype("./fonts/Arial Unicode.ttf")
+def get_image_object(path, mode='RGBA'):
+   print("Inside function", type(path))
+   file = Image.open(path).convert(mode)
+   return file
 
-def text_watermark_image(img:Image.Image, text:str="© CYBER-SAIYAN", xy:tuple[int]=(100, 60), x_offset:int=15, thickness:float=0.5, color:str|tuple='lightgray', hv_len:tuple=(100, 50), mode='RGBA', alpha:int=25):
+
+def text_watermark_image(img:Image.Image, text:str="© CYBER-SAIYAN", xy:tuple[int]=(100, 60), x_offset:int=35, thickness:float=0.5, color:str|tuple='red', hv_len:tuple=(100, 50), mode='RGBA', alpha:int=25, show_image=False):
     """Draws text over the image in a sequence
     
     :params Image img: takes Image object to draw text on.
@@ -15,12 +19,14 @@ def text_watermark_image(img:Image.Image, text:str="© CYBER-SAIYAN", xy:tuple[i
 
     :returns: None
     """
-
     watermark = create_new_image(img=img, mode=mode)
     v_len, h_len = get_watermark_area(watermark, hv_len)
     create_watermark(watermark, mode, h_len, v_len, xy, x_offset, text, thickness, color)
     apply_transparency(img=watermark, alpha=alpha)
     apply_watermark(img, watermark)
+
+    if show_image == True:
+        img.show()
 
 
 def apply_watermark(img:Image.Image, watermark:Image.Image):
