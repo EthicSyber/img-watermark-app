@@ -1,7 +1,7 @@
 # IMG WATERMARK APP
 
 
-The Image Watermark App is an application that will take any type of image and output a copy with the watermark you choose. Currently this project is using PIL (Python Image library) and Tkinter. The PIL library handles the image process in the background and Tkinter helped with building the User Interface. You'll notice that the application isn't showing the preview o nthe canvas background of the app instead it will only show a temp file when using watermark after selecting a file. Plans moving forward will be to integrate the functionality to provide the canvas preview for any image. 
+The Image Watermark App is an application that will take any type of image and output a copy with the watermark you choose. Currently this project is using PIL (Python Image library) and Tkinter. The PIL library handles the image process in the background and Tkinter helped with building the User Interface. You'll notice that the application isn't showing the preview on the canvas background of the app instead it will only show a temp file when using watermark after selecting a file. Plans moving forward will be to integrate the functionality to provide the canvas preview for any image. 
 
 
 <table>
