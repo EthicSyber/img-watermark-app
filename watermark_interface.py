@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import ttk, filedialog, messagebox
-from watermark_functions import text_watermark_image, get_image_object
+from PIL import ImageTk
+from watermark import Watermark
+import sys, os
 
 APP_WIDTH, APP_HEIGHT = 550,600
 APP_W_OFFSET, APP_H_OFFSET = 6, 35
@@ -14,9 +16,10 @@ WHITE = "#ffffff"
 VIOLET = "#4c4eb2"
 BLUE_GRAY = "#3e4a7c"
 
-class WatermarkApp:
+class WatermarkUI:
     def __init__(self):
         self.filepath = ''
+        self.filename = ''
         root = Tk()
         root.title('Watermark App')
         root.geometry(f"{APP_WIDTH}x{APP_HEIGHT}")
@@ -34,8 +37,9 @@ class WatermarkApp:
         ttk.Label(mainframe, textvariable=self.path, background=DARK_GRAY, foreground=WHITE).grid(column=0, row=0, sticky=W, padx=60)
         ttk.Button(mainframe, text="Select", style="Primary.TButton", command=self.select_image).grid(column=0, row=2, sticky=W, pady=PADY)
         ttk.Button(mainframe, text="Watermark", style="Primary.TButton", command=self.watermark_image).grid(column=0, row=2, sticky=W, padx=120)
-        canvas = Canvas(mainframe, width=500, height=500, borderwidth=1, background=MEDIUM_GRAY, highlightthickness=1, relief=SOLID)
-        canvas.grid(column=0, row=3)
+        ttk.Button(mainframe, text="Save", style="Primary.TButton", command=self.save_file).grid(column=0, row=2, sticky=E)
+        self.canvas = Canvas(mainframe, width=500, height=500, borderwidth=1, background=MEDIUM_GRAY, highlightthickness=1, relief=SOLID)
+        self.canvas.grid(column=0, row=3)
         root.mainloop()
 
     def select_image(self):
@@ -47,8 +51,21 @@ class WatermarkApp:
  
     def watermark_image(self):
         if self.filepath:
-            image = get_image_object(self.filepath)
-            text_watermark_image(img=image, thickness=0.2, alpha=50)
-            image.show()
+            self.watermark = Watermark(self.filepath)
+            self.watermark.text_watermark_image(img=self.watermark.image, thickness=0.2, alpha=50)
+            self.preview_watermark(watermark_image=self.watermark.image)
         else:
             messagebox.showinfo(title="Invalid File", message="File not found!", icon='warning')
+        
+    def save_file(self):
+        is_save = messagebox.askquestion(title="Save File", message="Would you like to save your new image?")
+        if is_save.startswith('y'):
+            self.watermark.image.save(fp=f"./images/{self.filename}", format='png')
+        else:
+            messagebox.showinfo(title="Invalid File", message="File not found!", icon='warning')
+    
+    def preview_watermark(self, watermark_image):
+        temp = watermark_image.resize((500, 500))
+        self.image = ImageTk.PhotoImage(image=temp)
+        self.canvas.create_image(0, 0, anchor=NW, image=self.image)
+

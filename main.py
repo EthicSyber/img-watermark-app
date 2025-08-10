@@ -1,5 +1,5 @@
-from ui import WatermarkApp
+from watermark_interface import WatermarkUI
 
 
 if __name__ == "__main__":
-    WatermarkApp()
+    WatermarkUI()
