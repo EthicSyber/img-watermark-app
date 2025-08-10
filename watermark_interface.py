@@ -60,7 +60,10 @@ class WatermarkUI:
     def save_file(self):
         is_save = messagebox.askquestion(title="Save File", message="Would you like to save your new image?")
         if is_save.startswith('y'):
-            self.watermark.image.save(fp=f"./images/{self.filename}", format='png')
+            try:
+                self.watermark.image.save(fp=f"./images/{self.filename}", format='png')
+            except AttributeError:
+                messagebox.showinfo(title="Doesn't Exist", message="Watermark File not Found!", icon='warning')
         else:
             messagebox.showinfo(title="Invalid File", message="File not found!", icon='warning')
     
