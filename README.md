@@ -10,12 +10,14 @@ The above was update. Later on I will update the photos below to show a file pre
   <tr>
     <td>App Face</td>
     <td>File Not Found</td>
-    <td>Watermark Image</td>
+    <td>Select File</td>
+    <td>Watermark & Save</td>
   </tr>
   <tr>
     <td><img width="601" height="702" alt="watermark_app_face" src="https://github.com/user-attachments/assets/2beac28b-a245-4c49-a8f4-c4361d6854b2" /></td>
     <td><img width="601" height="702" alt="watermark_app_warning" src="https://github.com/user-attachments/assets/078f114c-8721-46e9-aa63-7ab57f69e3fa" /></td>
-    <td><img width="601" height="702" alt="watermark_app_warning" src="https://github.com/user-attachments/assets/bb452b5c-d126-4268-862a-27bc48a866dc" /></td>
+    <td><img width="601" height="702" alt="watermark_app_warning" src="https://github.com/user-attachments/assets/0eff92f8-1a0e-47f9-b8e2-18d8e1e2f73c" /></td>
+    <td><img width="601" height="702" alt="watermark_app_warning" src="https://github.com/user-attachments/assets/bab11e86-0db0-4627-bc97-b2b332f3d9c5" /></td>
   </tr>
 </table>
 
